@@ -18,7 +18,7 @@ function Header() {
       <div className=" container max-w-full">
         <div className="hidden lg:flex items-center px-4 md:px-12 py-6 justify-between shadow w-full">
           <Link href="/">
-            <h2 className="font-extrabold text-purple-800">OnlineStore</h2>
+            <h2 className="font-extrabold text-purple-800 text-xl">OnlineStore</h2>
           </Link>
 
           <SearchBar />
@@ -44,7 +44,7 @@ function Header() {
         </div>
         <div className="flex lg:hidden items-center px-4 md:px-12 justify-between w-full py-4">
           <Link href="/">
-            <h2 className="text-purple-800 font-extrabold">OnlineStore</h2>
+            <h2 className="text-purple-800 font-extrabold text-xl">OnlineStore</h2>
           </Link>
           <button onClick={() => setMenu(!menu)}>
             {menu ? (

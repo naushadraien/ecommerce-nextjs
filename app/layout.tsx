@@ -3,7 +3,8 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import { ReactQueryProvider } from "./ReactQueryProvider";
 import { ReduxProvider } from "./Provider";
-
+import Footer from "@/components/Footer";
+import { Toaster } from 'react-hot-toast';
 export const metadata = {
   title: "OnlineStore",
   description: "OnlineStore",
@@ -20,15 +21,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ReduxProvider>
-      <ReactQueryProvider>
-        <html lang="en" className={montserrat.className}>
-          <body>
+    <ReactQueryProvider>
+      <html lang="en" className={montserrat.className}>
+        <body>
+          <Toaster position="top-right" reverseOrder={false} />
+          <ReduxProvider>
             <Header />
             {children}
-          </body>
-        </html>
-      </ReactQueryProvider>
-    </ReduxProvider>
+            <Footer />
+          </ReduxProvider>
+        </body>
+      </html>
+    </ReactQueryProvider>
   );
 }

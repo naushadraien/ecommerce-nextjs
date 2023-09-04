@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/slice/cartSlice";
 import { API } from "@/utility/page";
+import toast from "react-hot-toast";
 function Modal() {
   const [isOpen, setIsOpen] = useState(true);
   const [product, setProduct] = useState<Product | null>(null);
@@ -20,6 +21,7 @@ function Modal() {
     if (product) {
       dispatch(addToCart(product));
     }
+    toast.success("Product added to cart");
   };
 
   useEffect(() => {
@@ -55,7 +57,7 @@ function Modal() {
           {/* The actual dialog panel  */}
           <Dialog.Panel className="mx-auto max-w-3xl rounded bg-white p-10">
             {loading ? (
-              <div className="h-8 w-8 rounded-full border-2 border-dotted border-blue-600 animate-spin" />
+              <div className="h-8 w-8 rounded-full border-2 border-dashed border-purple-700 animate-spin" />
             ) : (
               <div className="flex gap-x-8 h-96">
                 {product?.image && (
@@ -69,8 +71,13 @@ function Modal() {
                 )}
                 <div className="flex-1 flex flex-col">
                   <div className="flex-1">
-                    <h4 className="font-semibold text-purple-700">{product?.title}</h4>
-                    <p className="font-medium text-sm"><span>Rs. </span>{product?.price}</p>
+                    <h4 className="font-semibold text-purple-700">
+                      {product?.title}
+                    </h4>
+                    <p className="font-medium text-sm">
+                      <span>Rs. </span>
+                      {product?.price}
+                    </p>
 
                     <div className="flex items-center text-sm my-4">
                       <p>{product?.rating.rate}</p>

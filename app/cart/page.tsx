@@ -4,12 +4,14 @@ import { RootState } from "@/redux/store/store";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 const CartItem = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: RootState) => state);
 
   const handleRemove = (id: number) => {
     dispatch(removeFromCart(id));
+    toast.error("Product removed from cart");
   };
 
   if (!cart.cartItems.length)
