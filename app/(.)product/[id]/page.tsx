@@ -69,8 +69,8 @@ function Modal() {
                 )}
                 <div className="flex-1 flex flex-col">
                   <div className="flex-1">
-                    <h4 className="font-semibold">{product?.title}</h4>
-                    <p className="font-medium text-sm">${product?.price}</p>
+                    <h4 className="font-semibold text-purple-700">{product?.title}</h4>
+                    <p className="font-medium text-sm"><span>Rs. </span>{product?.price}</p>
 
                     <div className="flex items-center text-sm my-4">
                       <p>{product?.rating.rate}</p>
@@ -82,7 +82,7 @@ function Modal() {
                             (_, i) => (
                               <StarIcon
                                 key={i}
-                                className="h-4 w-4 text-yellow-500"
+                                className="h-4 w-4 text-green-700"
                               />
                             )
                           )}
@@ -93,7 +93,7 @@ function Modal() {
                             (_, i) => (
                               <StarIconOutline
                                 key={i}
-                                className="h-4 w-4 text-yellow-500"
+                                className="h-4 w-4 text-green-700"
                               />
                             )
                           )}

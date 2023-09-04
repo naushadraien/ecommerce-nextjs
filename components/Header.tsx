@@ -16,27 +16,27 @@ function Header() {
   return (
     <header className=" sticky top-0 bg-white z-50">
       <div className=" container max-w-full">
-        <div className="hidden lg:flex items-center px-4 md:px-12 py-2 justify-between shadow w-full">
+        <div className="hidden lg:flex items-center px-4 md:px-12 py-6 justify-between shadow w-full">
           <Link href="/">
-            <h2 className="font-extrabold">OnlineStore</h2>
+            <h2 className="font-extrabold text-purple-800">OnlineStore</h2>
           </Link>
 
           <SearchBar />
 
-          <div className="flex items-center space-x-2.5 text-sm">
+          <div className="flex items-center space-x-3.5 text-sm">
             {/* <button className="button bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black"> */}
             {/* Access the correct property from the state */}
             {/* Items: {cart.cartItems.length}
         </button> */}
 
             <Link href={"/"}>
-              <div className="font-bold button rounded-full  hover:bg-purple-700 hover:text-gray-50 hover:border-transparent">
+              <div className="text-purple-800 font-bold text-lg hover:text-purple-600">
                 Home
               </div>
             </Link>
 
             <Link href="/cart">
-              <button className="button rounded-full  hover:bg-purple-700 hover:text-gray-50 hover:border-transparent">
+              <button className="text-purple-800 font-bold text-lg hover:text-purple-600">
                 Cart({cart.cartItems.length})
               </button>
             </Link>
@@ -44,13 +44,13 @@ function Header() {
         </div>
         <div className="flex lg:hidden items-center px-4 md:px-12 justify-between w-full py-4">
           <Link href="/">
-            <h2 className="font-extrabold">OnlineStore</h2>
+            <h2 className="text-purple-800 font-extrabold">OnlineStore</h2>
           </Link>
           <button onClick={() => setMenu(!menu)}>
             {menu ? (
-              <IoMdClose className="text-3xl lg:hidden rotate-90" />
+              <IoMdClose className="text-3xl lg:hidden rotate-90 text-purple-800" />
             ) : (
-              <RxHamburgerMenu className="text-3xl lg:hidden" />
+              <RxHamburgerMenu className="text-3xl lg:hidden text-purple-800" />
             )}
           </button>
         </div>
@@ -67,13 +67,13 @@ function Header() {
                   </button> */}
 
               <Link href={"/"} className="flex my-2">
-                <div className="button rounded-full hover:bg-purple-700 hover:text-gray-50 hover:border-transparent">
+                <div className="text-purple-800 font-bold text-lg hover:text-purple-600">
                   Home
                 </div>
               </Link>
 
               <Link href="/cart">
-                <button className="button rounded-full hover:bg-purple-700 hover:text-gray-50 hover:border-transparent">
+                <button className=" text-purple-800 font-bold text-lg hover:text-purple-600">
                   Cart({cart.cartItems.length})
                 </button>
               </Link>
