@@ -1,5 +1,5 @@
 "use client";
-import { removeFromCart } from "@/redux/slice/cartSlice";
+import { removeAProductFromCart } from "@/redux/slice/cartSlice";
 import { RootState } from "@/redux/store/store";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +10,7 @@ const CartItem = () => {
   const { cart } = useSelector((state: RootState) => state);
 
   const handleRemove = (id: number) => {
-    dispatch(removeFromCart(id));
+    dispatch(removeAProductFromCart(id));
     toast.error("Product removed from cart");
   };
 
@@ -24,31 +24,76 @@ const CartItem = () => {
     );
 
   return (
-    <div className="flex items-center mt-20 flex-col ">
-      <h1 className="font-bold text-2xl">Cart Item</h1>
-      <div>
+    <div className="flex mt-20 overflow-hidden justify-center items-center">
+      <div className="container">
+        <h1 className="font-bold text-2xl flex justify-center items-center">
+          Cart Item
+        </h1>
         {cart.cartItems.map((item, index) => (
-          <div
-            key={index}
-            className="flex justify-center items-center flex-col my-10 flex-1"
-          >
+          <div key={index} className="my-10 flex justify-center items-center">
             <Image
               src={item.image}
               alt={item.title}
-              width={100}
-              height={100}
+              width={300}
+              height={300}
               className="mb-4"
             />
-            <h3 className="font-bold md:text-xl text-xs">{item.title}</h3>
-            <h4>$({item.price})</h4>
-            <button
-              onClick={() => handleRemove(item.id)}
-              className="bg-red-500 text-gray-50 px-2 rounded-md font-bold"
-            >
-              Remove
-            </button>
+            <div className="flex justify-center items-center flex-col w-36">
+              <p className="font-bold lg:text-lg text-md text-purple-700">
+                {item.title}
+              </p>
+              <p>{item.category}</p>
+              <p>$({item.price})</p>
+            </div>
+            <div className="flex flex-1 justify-center items-center flex-col">
+              <div className="flex justify-center items-center my-2">
+                <div className="cursor-pointer rounded-l bg-purple-700 text-white font-bold py-1 px-3.5 duration-100 hover:bg-purple-900 hover:text-blue-50">
+                  +
+                </div>
+                <p className="h-8 w-8 border bg-purple-200 text-center font-bold text-sm flex justify-center items-center">
+                  4
+                </p>
+                <div className="cursor-pointer rounded-r bg-purple-700 text-white font-bold py-1 px-3 duration-100 hover:bg-purple-900 hover:text-blue-50">
+                  -
+                </div>
+              </div>
+              <div>
+                <button
+                  onClick={() => handleRemove(item.id)}
+                  className="text-slate-700 px-2 rounded-md font-bold "
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
           </div>
         ))}
+      </div>
+      <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+        <div className="mb-2 flex justify-between">
+          <p className="text-gray-700">Subtotal</p>
+          {/* <p className='text-gray-700'>Rs {cart.totalAmount.toFixed(2)}</p> */}
+        </div>
+        <div className="flex justify-between">
+          <p className="text-gray-700">Shipping</p>
+          <p className="text-gray-700">Rs 4.99</p>
+        </div>
+        <hr className="my-4" />
+        <div className="flex justify-between">
+          <p className="text-lg font-bold">Total</p>
+          <div className="">
+            <p className="mb-1 text-lg font-bold">
+              {/* Rs {(cart.totalAmount + 4.99).toFixed(2)} */}
+            </p>
+            <p className="text-sm text-gray-700">including VAT</p>
+          </div>
+        </div>
+        <button
+          className="mt-6 w-full bg-black py-1.5 font-medium text-blue-50 hover:bg-black/80"
+          onClick={() => alert("Checkout functionality not added!")}
+        >
+          Check out
+        </button>
       </div>
     </div>
   );

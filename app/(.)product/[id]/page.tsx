@@ -6,23 +6,17 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "@/redux/slice/cartSlice";
+import { CartItems, addToCart } from "@/redux/slice/cartSlice";
 import { API } from "@/utility/page";
 import toast from "react-hot-toast";
+
 function Modal() {
   const [isOpen, setIsOpen] = useState(true);
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<CartItems | null>(null);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const router = useRouter();
   const dispatch = useDispatch();
-
-  const handleAdd = (product: Product | null) => {
-    if (product) {
-      dispatch(addToCart(product));
-    }
-    toast.success("Product added to cart");
-  };
 
   useEffect(() => {
     async function fetchProduct() {
@@ -37,6 +31,19 @@ function Modal() {
 
     fetchProduct();
   }, [id]);
+
+  const handleAdd = (product: CartItems | null) => {
+    if (product) {
+      dispatch(
+        addToCart({ ...product, quantity: 1, totalPrice: product.price })
+      );
+    }
+    toast.success("Product added to cart");
+    // if (product) {
+    //   dispatch(addToCart(product));
+    // }
+    // toast.success("Product added to cart");
+  };
 
   return (
     <Dialog
