@@ -26,7 +26,9 @@ const Search = () => {
       </div>
       <div className="flex justify-center items-center max-lg:flex-col flex-wrap">
         {filteredProducts.length === 0 ? (
-          <p className="my-20">No results found</p>
+          <p className="my-20 font-bold text-xl text-red-500">
+            No Results Found!
+          </p>
         ) : (
           filteredProducts.map((product) => (
             <div key={product.id} className="flex justify-between mx-5 my-8">
